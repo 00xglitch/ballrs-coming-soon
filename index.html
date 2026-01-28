@@ -5,27 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BALLRS.AI - Coming Soon</title>
 
-    <!-- SEO Meta -->
-    <meta name="description" content="BALLRS.AI - The Future of Football is AI-Powered. Revolutionary sports technology connecting players, clubs, and fans.">
-    <meta name="keywords" content="ballrs, AI, football, soccer, sports tech, wearables, training, analytics">
+    <!-- SEO -->
+    <meta name="description" content="BALLRS.AI - The Future of Football is AI-Powered.">
     <meta name="author" content="BALLRS.AI">
-    <meta name="robots" content="index, follow">
 
-    <!-- Open Graph / Social -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ballrs.ai/">
     <meta property="og:title" content="BALLRS.AI - Coming Soon">
-    <meta property="og:description" content="The Future of Football is AI-Powered. Revolutionary sports technology coming soon.">
+    <meta property="og:description" content="The Future of Football is AI-Powered.">
     <meta property="og:image" content="https://ballrs.ai/assets/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:site_name" content="BALLRS.AI">
-    <meta property="og:locale" content="en_US">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="BALLRS.AI - Coming Soon">
-    <meta name="twitter:description" content="The Future of Football is AI-Powered.">
     <meta name="twitter:image" content="https://ballrs.ai/assets/og-image.png">
 
     <!-- Favicon -->
@@ -35,57 +30,34 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
     <style>
-        /* ============================================
-           Brand Colors
-           ============================================ */
         :root {
             --primary: #3D7A6E;
-            --primary-light: #4A9A8A;
             --accent: #00FF66;
-            --accent-glow: rgba(0, 255, 102, 0.4);
+            --accent-glow: rgba(0, 255, 102, 0.35);
             --gold: #D4A84B;
-            --background: #0a0a0a;
-            --background-light: #111111;
+            --bg: #060606;
+            --bg-light: #0d0d0d;
             --text: #ffffff;
-            --text-muted: #888888;
-            --border: rgba(61, 122, 110, 0.3);
+            --text-dim: #666666;
         }
 
-        /* ============================================
-           Reset & Base
-           ============================================ */
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html {
-            font-size: 16px;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--background);
+        html, body {
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
             color: var(--text);
-            min-height: 100vh;
             overflow-x: hidden;
-            line-height: 1.6;
         }
 
-        /* ============================================
-           Video Background
-           ============================================ */
+        /* ===== VIDEO BG ===== */
         .video-bg {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             z-index: 0;
         }
 
@@ -93,24 +65,18 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            opacity: 0.4;
         }
 
-        .video-overlay {
+        .video-bg::after {
+            content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(
-                180deg,
-                rgba(10, 10, 10, 0.9) 0%,
-                rgba(10, 10, 10, 0.7) 40%,
-                rgba(10, 10, 10, 0.8) 70%,
-                rgba(10, 10, 10, 0.95) 100%
-            );
+            background: radial-gradient(ellipse at center, transparent 0%, var(--bg) 70%);
         }
 
-        /* ============================================
-           Main Container
-           ============================================ */
-        .container {
+        /* ===== MAIN LAYOUT ===== */
+        .page {
             position: relative;
             z-index: 10;
             min-height: 100vh;
@@ -119,647 +85,550 @@
             align-items: center;
             justify-content: center;
             padding: 2rem;
-            text-align: center;
+            gap: 1.5rem;
         }
 
-        /* ============================================
-           Football Loading Animation
-           ============================================ */
-        .football-loader {
+        /* ===== FLOATING ORBS ===== */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            pointer-events: none;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--primary);
+            top: -100px;
+            left: -100px;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 300px;
+            height: 300px;
+            background: var(--accent);
+            bottom: -50px;
+            right: -50px;
+            animation-delay: -4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, -30px) scale(1.1); }
+        }
+
+        /* ===== FOOTBALL ANIMATION ===== */
+        .ball-wrap {
             position: relative;
-            width: 100px;
-            height: 100px;
-            margin-bottom: 2rem;
+            width: 90px;
+            height: 90px;
+            animation: fade-in 1s ease-out;
         }
 
-        .football {
-            width: 70px;
-            height: 70px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation: bounce 1.2s ease-in-out infinite;
-        }
-
-        .football svg {
+        .ball {
             width: 100%;
             height: 100%;
-            filter: drop-shadow(0 0 20px var(--accent-glow));
-            animation: spin 3s linear infinite;
+            animation: bounce 1.5s ease-in-out infinite;
+            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.5));
+        }
+
+        .ball svg {
+            width: 100%;
+            height: 100%;
+            animation: spin 4s linear infinite;
         }
 
         @keyframes bounce {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); }
-            50% { transform: translate(-50%, -70%) scale(0.95); }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-25px); }
         }
 
         @keyframes spin {
-            from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
 
-        .football-shadow {
+        .ball-shadow {
             position: absolute;
-            bottom: 5px;
+            bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
             width: 60px;
-            height: 12px;
-            background: radial-gradient(ellipse, rgba(0,0,0,0.5) 0%, transparent 70%);
-            animation: shadow-pulse 1.2s ease-in-out infinite;
+            height: 15px;
+            background: radial-gradient(ellipse, rgba(0,0,0,0.6) 0%, transparent 70%);
+            animation: shadow 1.5s ease-in-out infinite;
         }
 
-        @keyframes shadow-pulse {
+        @keyframes shadow {
             0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.6; }
-            50% { transform: translateX(-50%) scale(0.6); opacity: 0.3; }
+            50% { transform: translateX(-50%) scale(0.5); opacity: 0.2; }
         }
 
-        /* ============================================
-           Logo
-           ============================================ */
-        .logo-section {
-            margin-bottom: 2rem;
-            animation: fade-up 1s ease-out 0.2s both;
-        }
-
+        /* ===== LOGO ===== */
         .logo {
-            width: 220px;
-            max-width: 80vw;
+            width: clamp(160px, 25vw, 240px);
             height: auto;
-            filter: drop-shadow(0 0 30px var(--accent-glow));
-            animation: logo-glow 3s ease-in-out infinite;
+            animation: fade-in 1s ease-out 0.2s both;
+            filter: drop-shadow(0 0 40px var(--accent-glow));
         }
 
-        @keyframes logo-glow {
-            0%, 100% { filter: drop-shadow(0 0 20px var(--accent-glow)); }
-            50% { filter: drop-shadow(0 0 40px var(--accent-glow)) drop-shadow(0 0 60px rgba(0, 255, 102, 0.2)); }
-        }
-
-        /* ============================================
-           Coming Soon Text
-           ============================================ */
-        .coming-soon {
-            margin-bottom: 1rem;
-            animation: fade-up 1s ease-out 0.4s both;
-        }
-
-        .coming-soon h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
-            font-weight: 900;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--accent);
-            text-shadow:
-                0 0 10px var(--accent),
-                0 0 30px var(--accent-glow),
-                0 0 60px var(--accent-glow);
-            animation: text-flicker 4s infinite;
-        }
-
-        @keyframes text-flicker {
-            0%, 100% { opacity: 1; }
-            92% { opacity: 1; }
-            93% { opacity: 0.8; }
-            94% { opacity: 1; }
-            96% { opacity: 0.9; }
-            97% { opacity: 1; }
-        }
-
-        /* ============================================
-           Tagline
-           ============================================ */
-        .tagline {
-            font-size: clamp(1rem, 3vw, 1.4rem);
-            color: var(--text-muted);
-            margin-bottom: 3rem;
-            letter-spacing: 0.1em;
-            min-height: 2rem;
-            animation: fade-up 1s ease-out 0.6s both;
-        }
-
-        .tagline-typed {
-            color: var(--text);
-            border-right: 2px solid var(--accent);
-            padding-right: 4px;
-            animation: blink-caret 0.8s infinite;
-        }
-
-        @keyframes blink-caret {
-            0%, 50% { border-color: var(--accent); }
-            51%, 100% { border-color: transparent; }
-        }
-
-        /* ============================================
-           Vision Section
-           ============================================ */
-        .vision {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 3rem;
-            max-width: 700px;
-            animation: fade-up 1s ease-out 0.8s both;
-        }
-
-        .vision-item {
+        /* ===== HEADING ===== */
+        .heading {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 0.75rem;
-            padding: 1rem;
-            transition: transform 0.3s;
+            gap: 0.5rem;
+            animation: fade-in 1s ease-out 0.4s both;
         }
 
-        .vision-item:hover { transform: translateY(-5px); }
+        .heading h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 10vw, 5rem);
+            font-weight: 900;
+            letter-spacing: 0.15em;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--text) 50%, var(--accent) 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s linear infinite;
+            text-shadow: none;
+        }
 
-        .vision-icon {
-            width: 50px;
-            height: 50px;
+        @keyframes shimmer {
+            to { background-position: 200% center; }
+        }
+
+        .heading p {
+            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+            color: var(--text-dim);
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            font-weight: 300;
+        }
+
+        /* ===== FEATURES ===== */
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2.5rem;
+            margin: 1rem 0;
+            animation: fade-in 1s ease-out 0.6s both;
+        }
+
+        .feature {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.6rem;
+            cursor: default;
+            transition: transform 0.3s ease;
+        }
+
+        .feature:hover { transform: translateY(-8px); }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
             display: flex;
             align-items: center;
             justify-content: center;
             border: 2px solid var(--primary);
             border-radius: 50%;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
-        .vision-icon svg {
-            width: 24px;
-            height: 24px;
-            color: var(--accent);
+        .feature-icon::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 1px solid transparent;
+            background: linear-gradient(135deg, var(--accent), transparent, var(--primary)) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s;
         }
 
-        .vision-item:hover .vision-icon {
-            background: var(--primary);
-            box-shadow: 0 0 25px var(--accent-glow);
+        .feature:hover .feature-icon::before { opacity: 1; }
+
+        .feature:hover .feature-icon {
             border-color: var(--accent);
+            box-shadow: 0 0 30px var(--accent-glow);
+            background: rgba(61, 122, 110, 0.2);
         }
 
-        .vision-item span {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            font-weight: 500;
-            letter-spacing: 0.05em;
+        .feature-icon svg {
+            width: 26px;
+            height: 26px;
+            stroke: var(--accent);
+            stroke-width: 1.5;
+            fill: none;
+        }
+
+        .feature span {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
             transition: color 0.3s;
         }
 
-        .vision-item:hover span { color: var(--accent); }
+        .feature:hover span { color: var(--accent); }
 
-        /* ============================================
-           Signup Form
-           ============================================ */
-        .signup {
+        /* ===== FORM ===== */
+        .form-section {
             width: 100%;
-            max-width: 480px;
-            animation: fade-up 1s ease-out 1s both;
+            max-width: 420px;
+            animation: fade-in 1s ease-out 0.8s both;
         }
 
-        .signup-text {
-            font-size: 1rem;
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-            letter-spacing: 0.03em;
-        }
-
-        .form-wrapper {
+        .form-wrap {
             display: flex;
-            background: var(--background-light);
-            border: 2px solid var(--primary);
-            border-radius: 50px;
+            background: rgba(13, 13, 13, 0.8);
+            border: 1px solid var(--primary);
+            border-radius: 60px;
             overflow: hidden;
-            transition: all 0.3s;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
         }
 
-        .form-wrapper:focus-within {
+        .form-wrap:focus-within {
             border-color: var(--accent);
-            box-shadow: 0 0 30px var(--accent-glow);
+            box-shadow: 0 0 40px var(--accent-glow), inset 0 0 20px rgba(0, 255, 102, 0.05);
         }
 
-        .form-wrapper input[type="email"] {
+        .form-wrap input[type="email"] {
             flex: 1;
-            padding: 1rem 1.5rem;
+            padding: 1.1rem 1.5rem;
             background: transparent;
             border: none;
             outline: none;
             color: var(--text);
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-family: inherit;
             min-width: 0;
         }
 
-        .form-wrapper input::placeholder { color: var(--text-muted); }
+        .form-wrap input::placeholder {
+            color: var(--text-dim);
+        }
 
-        .submit-btn {
+        .form-wrap button {
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 0.5rem;
-            padding: 1rem 2rem;
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            padding: 1.1rem 1.8rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
             border: none;
-            color: var(--text);
+            color: var(--bg);
             font-family: 'Orbitron', sans-serif;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 600;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.08em;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             white-space: nowrap;
         }
 
-        .submit-btn:hover {
-            background: linear-gradient(135deg, var(--accent), var(--primary-light));
+        .form-wrap button:hover {
+            background: linear-gradient(135deg, var(--accent), var(--primary));
             box-shadow: 0 0 25px var(--accent-glow);
         }
 
-        .submit-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
+        .form-wrap button:disabled {
+            opacity: 0.5;
+            cursor: wait;
         }
 
-        .submit-btn svg {
-            width: 18px;
-            height: 18px;
+        .form-wrap button svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            stroke-width: 2.5;
+            fill: none;
             transition: transform 0.3s;
         }
 
-        .submit-btn:hover svg { transform: translateX(4px); }
-
-        /* Hidden honeypot fields */
-        .hp-field {
-            position: absolute;
-            left: -9999px;
-            opacity: 0;
-            height: 0;
-            width: 0;
-            pointer-events: none;
+        .form-wrap button:hover svg {
+            transform: translateX(3px);
         }
 
-        .form-message {
+        .hp { position: absolute; left: -9999px; }
+
+        .msg {
             margin-top: 1rem;
-            padding: 0.75rem 1rem;
-            border-radius: 8px;
-            font-size: 0.9rem;
+            padding: 0.8rem 1.2rem;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            text-align: center;
             display: none;
         }
 
-        .form-message.success {
+        .msg.ok {
             display: block;
             background: rgba(0, 255, 102, 0.1);
             color: var(--accent);
             border: 1px solid var(--accent);
         }
 
-        .form-message.error {
+        .msg.err {
             display: block;
-            background: rgba(255, 68, 68, 0.1);
+            background: rgba(255, 80, 80, 0.1);
             color: #ff6b6b;
             border: 1px solid #ff6b6b;
         }
 
-        /* ============================================
-           Footer
-           ============================================ */
-        .footer {
-            margin-top: 4rem;
-            animation: fade-up 1s ease-out 1.2s both;
-        }
-
-        .social-links {
+        /* ===== FOOTER ===== */
+        .foot {
             display: flex;
-            justify-content: center;
-            gap: 1.25rem;
-            margin-bottom: 1.5rem;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            margin-top: auto;
+            padding-top: 2rem;
+            animation: fade-in 1s ease-out 1s both;
         }
 
-        .social-link {
-            width: 44px;
-            height: 44px;
+        .socials {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .socials a {
+            width: 42px;
+            height: 42px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid var(--border);
+            border: 1px solid rgba(61, 122, 110, 0.4);
             border-radius: 50%;
-            color: var(--text-muted);
+            color: var(--text-dim);
             text-decoration: none;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
         }
 
-        .social-link svg { width: 20px; height: 20px; }
+        .socials a svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
 
-        .social-link:hover {
+        .socials a:hover {
             color: var(--accent);
             border-color: var(--accent);
-            box-shadow: 0 0 20px var(--accent-glow);
-            transform: translateY(-3px);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px var(--accent-glow);
         }
 
-        .copyright {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            letter-spacing: 0.05em;
+        .copy {
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            letter-spacing: 0.1em;
         }
 
-        /* ============================================
-           Animations
-           ============================================ */
-        @keyframes fade-up {
-            from { opacity: 0; transform: translateY(30px); }
+        /* ===== ANIMATION ===== */
+        @keyframes fade-in {
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ============================================
-           Responsive
-           ============================================ */
-        @media (max-width: 640px) {
-            .container { padding: 1.5rem; }
-            .logo { width: 180px; }
-            .coming-soon h1 { letter-spacing: 0.1em; }
-            .vision { gap: 1rem; }
-            .vision-item { flex: 1 1 calc(50% - 0.5rem); min-width: 120px; }
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 600px) {
+            .page { padding: 1.5rem; gap: 1.2rem; }
+            .ball-wrap { width: 70px; height: 70px; }
+            .features { gap: 1.5rem; }
+            .feature-icon { width: 48px; height: 48px; }
+            .feature-icon svg { width: 22px; height: 22px; }
 
-            .form-wrapper {
+            .form-wrap {
                 flex-direction: column;
-                border-radius: 16px;
+                border-radius: 20px;
             }
 
-            .form-wrapper input[type="email"] {
+            .form-wrap input[type="email"] {
                 text-align: center;
-                border-bottom: 1px solid var(--border);
+                padding: 1rem;
             }
 
-            .submit-btn {
+            .form-wrap button {
                 justify-content: center;
-                border-radius: 0 0 14px 14px;
+                padding: 1rem;
             }
+
+            .orb-1 { width: 250px; height: 250px; }
+            .orb-2 { width: 200px; height: 200px; }
         }
 
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
                 animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Video Background -->
+    <!-- Background -->
     <div class="video-bg">
-        <video autoplay muted loop playsinline id="bg-video">
+        <video autoplay muted loop playsinline id="vid">
             <source src="assets/hero-video.mp4" type="video/mp4">
         </video>
-        <div class="video-overlay"></div>
     </div>
 
-    <!-- Main Content -->
-    <main class="container">
-        <!-- Football Loading Animation -->
-        <div class="football-loader">
-            <div class="football">
-                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="50" cy="50" r="46" fill="#D4A84B" stroke="#3D7A6E" stroke-width="4"/>
-                    <polygon points="50,18 68,35 62,58 38,58 32,35" fill="#3D7A6E"/>
-                    <line x1="50" y1="18" x2="50" y2="4" stroke="#3D7A6E" stroke-width="3" stroke-linecap="round"/>
-                    <line x1="68" y1="35" x2="82" y2="22" stroke="#3D7A6E" stroke-width="3" stroke-linecap="round"/>
-                    <line x1="62" y1="58" x2="78" y2="75" stroke="#3D7A6E" stroke-width="3" stroke-linecap="round"/>
-                    <line x1="38" y1="58" x2="22" y2="75" stroke="#3D7A6E" stroke-width="3" stroke-linecap="round"/>
-                    <line x1="32" y1="35" x2="18" y2="22" stroke="#3D7A6E" stroke-width="3" stroke-linecap="round"/>
+    <!-- Floating Orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <!-- Page -->
+    <main class="page">
+        <!-- Ball -->
+        <div class="ball-wrap">
+            <div class="ball">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" fill="#D4A84B" stroke="#3D7A6E" stroke-width="4"/>
+                    <polygon points="50,15 70,35 63,60 37,60 30,35" fill="#3D7A6E"/>
+                    <line x1="50" y1="15" x2="50" y2="5" stroke="#3D7A6E" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="70" y1="35" x2="85" y2="20" stroke="#3D7A6E" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="63" y1="60" x2="80" y2="78" stroke="#3D7A6E" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="37" y1="60" x2="20" y2="78" stroke="#3D7A6E" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="30" y1="35" x2="15" y2="20" stroke="#3D7A6E" stroke-width="3" stroke-linecap="round"/>
                 </svg>
             </div>
-            <div class="football-shadow"></div>
+            <div class="ball-shadow"></div>
         </div>
 
         <!-- Logo -->
-        <div class="logo-section">
-            <img src="assets/logo-clean.png" alt="BALLRS.AI" class="logo">
-        </div>
+        <img src="assets/logo-clean.png" alt="BALLRS.AI" class="logo">
 
-        <!-- Coming Soon -->
-        <div class="coming-soon">
+        <!-- Heading -->
+        <div class="heading">
             <h1>COMING SOON</h1>
+            <p>The Future of Football</p>
         </div>
 
-        <!-- Tagline -->
-        <p class="tagline">
-            <span class="tagline-typed" id="tagline"></span>
-        </p>
-
-        <!-- Vision Items -->
-        <div class="vision">
-            <div class="vision-item">
-                <div class="vision-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
-                    </svg>
+        <!-- Features -->
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
                 </div>
                 <span>AI Analytics</span>
             </div>
-            <div class="vision-item">
-                <div class="vision-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
-                    </svg>
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
                 </div>
-                <span>Smart Wearables</span>
+                <span>Wearables</span>
             </div>
-            <div class="vision-item">
-                <div class="vision-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/>
-                    </svg>
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
                 </div>
-                <span>Immersive Training</span>
+                <span>Training</span>
             </div>
         </div>
 
-        <!-- Signup Form -->
-        <div class="signup">
-            <p class="signup-text">Be the first to experience the future of football</p>
-            <form id="signup-form" action="https://formsubmit.co/waleedab@gmail.com" method="POST">
-                <!-- FormSubmit Config -->
-                <input type="hidden" name="_subject" value="New BALLRS.AI Signup!">
+        <!-- Form -->
+        <div class="form-section">
+            <form id="frm" action="https://formsubmit.co/waleedab@gmail.com" method="POST">
+                <input type="hidden" name="_subject" value="BALLRS.AI - New Signup">
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_next" value="https://ballrs.ai/?success=true">
+                <input type="hidden" name="_next" value="https://ballrs.ai/?ok=1">
+                <input type="text" name="_honey" class="hp" tabindex="-1">
+                <input type="text" name="website" class="hp" tabindex="-1">
+                <input type="hidden" name="_ts" id="ts" value="">
 
-                <!-- Honeypot fields for bot protection -->
-                <input type="text" name="_honey" class="hp-field" tabindex="-1" autocomplete="off">
-                <input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off">
-                <input type="text" name="phone_number" class="hp-field" tabindex="-1" autocomplete="off">
-
-                <!-- Timestamp for bot detection -->
-                <input type="hidden" name="_timestamp" id="form-timestamp" value="">
-
-                <div class="form-wrapper">
-                    <input
-                        type="email"
-                        name="email"
-                        id="email-input"
-                        placeholder="Enter your email"
-                        required
-                        autocomplete="email"
-                    >
-                    <button type="submit" class="submit-btn" id="submit-btn">
-                        <span id="btn-text">Notify Me</span>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
+                <div class="form-wrap">
+                    <input type="email" name="email" id="em" placeholder="Enter your email" required autocomplete="email">
+                    <button type="submit" id="btn">
+                        <span id="btxt">Notify Me</span>
+                        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                     </button>
                 </div>
-                <div class="form-message" id="form-message"></div>
+                <div class="msg" id="msg"></div>
             </form>
         </div>
 
         <!-- Footer -->
-        <footer class="footer">
-            <div class="social-links">
-                <a href="#" class="social-link" aria-label="X (Twitter)">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                    </svg>
+        <footer class="foot">
+            <div class="socials">
+                <a href="#" aria-label="X">
+                    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                 </a>
-                <a href="#" class="social-link" aria-label="LinkedIn">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                    </svg>
+                <a href="#" aria-label="LinkedIn">
+                    <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 110-4.125 2.062 2.062 0 010 4.125zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                 </a>
-                <a href="#" class="social-link" aria-label="Instagram">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
-                    </svg>
+                <a href="#" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
                 </a>
             </div>
-            <p class="copyright">&copy; 2026 BALLRS.AI. All rights reserved.</p>
+            <p class="copy">&copy; 2026 BALLRS.AI</p>
         </footer>
     </main>
 
     <script>
-        // ============================================
-        // Typewriter Effect
-        // ============================================
-        const tagline = "The Future of Football is AI-Powered";
-        const taglineEl = document.getElementById('tagline');
-        let charIndex = 0;
+        var frm = document.getElementById('frm');
+        var em = document.getElementById('em');
+        var btn = document.getElementById('btn');
+        var btxt = document.getElementById('btxt');
+        var msg = document.getElementById('msg');
+        var ts = document.getElementById('ts');
+        var t0 = Date.now();
+        var touched = false;
 
-        function typeWriter() {
-            if (charIndex < tagline.length) {
-                taglineEl.textContent += tagline.charAt(charIndex);
-                charIndex++;
-                setTimeout(typeWriter, 60);
-            }
-        }
+        ts.value = t0;
+        em.addEventListener('focus', function() { touched = true; });
 
-        setTimeout(typeWriter, 1500);
+        frm.addEventListener('submit', function(e) {
+            var hp1 = frm.querySelector('input[name="_honey"]').value;
+            var hp2 = frm.querySelector('input[name="website"]').value;
+            var dt = Date.now() - t0;
 
-        // ============================================
-        // Form Security & Handling
-        // ============================================
-        const form = document.getElementById('signup-form');
-        const emailInput = document.getElementById('email-input');
-        const submitBtn = document.getElementById('submit-btn');
-        const btnText = document.getElementById('btn-text');
-        const formMessage = document.getElementById('form-message');
-        const timestampInput = document.getElementById('form-timestamp');
-
-        // Set timestamp when page loads (for bot detection)
-        const pageLoadTime = Date.now();
-        timestampInput.value = pageLoadTime;
-
-        // Track form interaction
-        let formInteracted = false;
-        emailInput.addEventListener('focus', function() { formInteracted = true; });
-        emailInput.addEventListener('input', function() { formInteracted = true; });
-
-        form.addEventListener('submit', function(e) {
-            var email = emailInput.value.trim();
-            var timeSinceLoad = Date.now() - pageLoadTime;
-
-            // Bot detection checks
-            var honeypot1 = form.querySelector('input[name="_honey"]').value;
-            var honeypot2 = form.querySelector('input[name="website"]').value;
-            var honeypot3 = form.querySelector('input[name="phone_number"]').value;
-
-            // Check 1: Honeypot fields should be empty
-            if (honeypot1 || honeypot2 || honeypot3) {
+            if (hp1 || hp2 || dt < 2500 || !touched) {
                 e.preventDefault();
                 return;
             }
 
-            // Check 2: Form submitted too quickly (less than 3 seconds)
-            if (timeSinceLoad < 3000) {
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em.value.trim())) {
                 e.preventDefault();
-                showMessage('Please wait a moment before submitting.', 'error');
+                show('Please enter a valid email', 'err');
                 return;
             }
 
-            // Check 3: No form interaction detected
-            if (!formInteracted) {
-                e.preventDefault();
-                return;
-            }
+            btn.disabled = true;
+            btxt.textContent = 'Sending...';
 
-            // Check 4: Valid email format
-            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                e.preventDefault();
-                showMessage('Please enter a valid email address.', 'error');
-                return;
-            }
-
-            // Show loading state
-            submitBtn.disabled = true;
-            btnText.textContent = 'Sending...';
-
-            // Store locally as backup
             try {
-                var signups = JSON.parse(localStorage.getItem('ballrs_signups') || '[]');
-                if (signups.indexOf(email) === -1) {
-                    signups.push(email);
-                    localStorage.setItem('ballrs_signups', JSON.stringify(signups));
-                }
-            } catch (err) {}
+                var s = JSON.parse(localStorage.getItem('bsignups') || '[]');
+                if (s.indexOf(em.value) === -1) { s.push(em.value); localStorage.setItem('bsignups', JSON.stringify(s)); }
+            } catch(x) {}
         });
 
-        // Check for success redirect
-        if (window.location.search.indexOf('success=true') !== -1) {
-            showMessage('Thank you! We will notify you when we launch.', 'success');
-            window.history.replaceState({}, document.title, window.location.pathname);
+        if (location.search.indexOf('ok=1') !== -1) {
+            show('Thanks! We will notify you.', 'ok');
+            history.replaceState({}, '', location.pathname);
         }
 
-        function showMessage(text, type) {
-            formMessage.textContent = text;
-            formMessage.className = 'form-message ' + type;
-
-            if (type === 'success') {
-                emailInput.value = '';
-                btnText.textContent = 'Notify Me';
-                submitBtn.disabled = false;
-            }
-
-            setTimeout(function() {
-                formMessage.className = 'form-message';
-                formMessage.textContent = '';
-            }, 8000);
+        function show(t, c) {
+            msg.textContent = t;
+            msg.className = 'msg ' + c;
+            if (c === 'ok') { em.value = ''; btxt.textContent = 'Notify Me'; btn.disabled = false; }
+            setTimeout(function() { msg.className = 'msg'; }, 6000);
         }
 
-        // ============================================
-        // Video Handling
-        // ============================================
-        var video = document.getElementById('bg-video');
-        if (video) {
-            video.play().catch(function() {});
-
-            document.addEventListener('visibilitychange', function() {
-                if (document.hidden) {
-                    video.pause();
-                } else {
-                    video.play();
-                }
-            });
-        }
+        var vid = document.getElementById('vid');
+        if (vid) { vid.play().catch(function(){}); document.addEventListener('visibilitychange', function() { document.hidden ? vid.pause() : vid.play(); }); }
     </script>
 </body>
 </html>
