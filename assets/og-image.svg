@@ -1,0 +1,69 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0a"/>
+      <stop offset="50%" style="stop-color:#111111"/>
+      <stop offset="100%" style="stop-color:#0a0a0a"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00FF66"/>
+      <stop offset="50%" style="stop-color:#3D7A6E"/>
+      <stop offset="100%" style="stop-color:#00FF66"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Decorative circles -->
+  <circle cx="100" cy="100" r="200" fill="none" stroke="#3D7A6E" stroke-width="1" opacity="0.2"/>
+  <circle cx="1100" cy="530" r="250" fill="none" stroke="#3D7A6E" stroke-width="1" opacity="0.2"/>
+  <circle cx="600" cy="315" r="400" fill="none" stroke="#00FF66" stroke-width="1" opacity="0.1"/>
+
+  <!-- Top accent line -->
+  <rect x="0" y="0" width="1200" height="4" fill="url(#accent)"/>
+
+  <!-- Logo placeholder area -->
+  <g transform="translate(520, 120)">
+    <!-- B Icon approximation -->
+    <rect x="0" y="0" width="160" height="180" rx="20" fill="#3D7A6E" filter="url(#glow)"/>
+    <rect x="25" y="25" width="50" height="50" rx="8" fill="#0a0a0a"/>
+    <rect x="25" y="95" width="70" height="60" rx="8" fill="#0a0a0a"/>
+    <circle cx="120" cy="125" r="30" fill="#D4A84B"/>
+    <polygon points="120,108 130,118 126,130 114,130 110,118" fill="#3D7A6E"/>
+  </g>
+
+  <!-- Main text -->
+  <text x="600" y="360" font-family="Arial Black, sans-serif" font-size="72" font-weight="900" fill="#ffffff" text-anchor="middle" letter-spacing="2">BALLRS.AI</text>
+
+  <!-- Tagline -->
+  <text x="600" y="420" font-family="Arial, sans-serif" font-size="28" fill="#00FF66" text-anchor="middle" letter-spacing="4">THE FUTURE OF FOOTBALL</text>
+
+  <!-- Subtitle -->
+  <text x="600" y="480" font-family="Arial, sans-serif" font-size="20" fill="#999999" text-anchor="middle">AI-Powered Sports Technology Platform</text>
+
+  <!-- Stats bar -->
+  <g transform="translate(200, 530)">
+    <text x="0" y="0" font-family="Arial Black, sans-serif" font-size="24" fill="#00FF66">5B+</text>
+    <text x="0" y="25" font-family="Arial, sans-serif" font-size="12" fill="#666666">FANS</text>
+
+    <text x="200" y="0" font-family="Arial Black, sans-serif" font-size="24" fill="#00FF66">$600B</text>
+    <text x="200" y="25" font-family="Arial, sans-serif" font-size="12" fill="#666666">MARKET</text>
+
+    <text x="420" y="0" font-family="Arial Black, sans-serif" font-size="24" fill="#00FF66">300K+</text>
+    <text x="420" y="25" font-family="Arial, sans-serif" font-size="12" fill="#666666">CLUBS</text>
+
+    <text x="620" y="0" font-family="Arial Black, sans-serif" font-size="24" fill="#00FF66">265M</text>
+    <text x="620" y="25" font-family="Arial, sans-serif" font-size="12" fill="#666666">PLAYERS</text>
+  </g>
+
+  <!-- Bottom accent line -->
+  <rect x="0" y="626" width="1200" height="4" fill="url(#accent)"/>
+</svg>
