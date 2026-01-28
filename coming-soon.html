@@ -102,10 +102,18 @@
         <!-- Email Signup -->
         <div class="signup-section">
             <p class="signup-text">Be the first to experience the revolution</p>
-            <form class="signup-form" id="signup-form">
+            <form class="signup-form" id="signup-form" action="https://formsubmit.co/tech@ballrs.ai" method="POST">
+                <!-- Formsubmit configuration -->
+                <input type="hidden" name="_subject" value="New BALLRS Signup!">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_next" value="https://ballrs.ai/coming-soon.html?success=true">
+                <input type="text" name="_honey" style="display:none">
+
                 <div class="input-wrapper">
                     <input
                         type="email"
+                        name="email"
                         placeholder="Enter your email"
                         required
                         id="email-input"

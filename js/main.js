@@ -25,6 +25,8 @@ setTimeout(typeWriter, 1200);
 // ============================================
 function createParticles() {
     const particlesContainer = document.getElementById('particles');
+    if (!particlesContainer) return;
+
     const particleCount = window.innerWidth < 768 ? 20 : 40;
 
     for (let i = 0; i < particleCount; i++) {
@@ -61,36 +63,26 @@ const form = document.getElementById('signup-form');
 const emailInput = document.getElementById('email-input');
 const formMessage = document.getElementById('form-message');
 
-form.addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const email = emailInput.value.trim();
-
-    // Basic validation
-    if (!isValidEmail(email)) {
-        showMessage('Please enter a valid email address', 'error');
-        return;
+// Check if returning from successful submission
+if (window.location.search.includes('success=true')) {
+    if (formMessage) {
+        showMessage('Thank you! We\'ll notify you when we launch.', 'success');
     }
-
-    // Simulate form submission
-    // In production, replace with actual API call
-    submitEmail(email);
-});
-
-function isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
+    // Clean up URL
+    window.history.replaceState({}, document.title, window.location.pathname);
 }
 
-function submitEmail(email) {
-    // Show loading state
-    const submitBtn = form.querySelector('.submit-btn');
-    const originalText = submitBtn.querySelector('.btn-text').textContent;
-    submitBtn.querySelector('.btn-text').textContent = 'Sending...';
-    submitBtn.disabled = true;
+if (form) {
+    form.addEventListener('submit', function(e) {
+        const email = emailInput.value.trim();
 
-    // Simulate API call (replace with actual endpoint)
-    setTimeout(() => {
+        // Basic validation
+        if (!isValidEmail(email)) {
+            e.preventDefault();
+            showMessage('Please enter a valid email address', 'error');
+            return;
+        }
+
         // Store email in localStorage as backup
         const emails = JSON.parse(localStorage.getItem('ballrs_signups') || '[]');
         if (!emails.includes(email)) {
@@ -98,29 +90,30 @@ function submitEmail(email) {
             localStorage.setItem('ballrs_signups', JSON.stringify(emails));
         }
 
-        // Show success message
-        showMessage('Thank you! We\'ll notify you when we launch.', 'success');
+        // Show loading state
+        const submitBtn = form.querySelector('.submit-btn');
+        submitBtn.querySelector('.btn-text').textContent = 'Sending...';
+        submitBtn.disabled = true;
 
-        // Reset form
-        emailInput.value = '';
-        submitBtn.querySelector('.btn-text').textContent = originalText;
-        submitBtn.disabled = false;
+        // Form will submit naturally to Formsubmit
+    });
+}
 
-        // Log for debugging (remove in production)
-        console.log('Email captured:', email);
-        console.log('All signups:', emails);
-    }, 1000);
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
 }
 
 function showMessage(text, type) {
+    if (!formMessage) return;
     formMessage.textContent = text;
     formMessage.className = 'form-message ' + type;
 
-    // Clear message after 5 seconds
+    // Clear message after 8 seconds
     setTimeout(() => {
         formMessage.textContent = '';
         formMessage.className = 'form-message';
-    }, 5000);
+    }, 8000);
 }
 
 // ============================================
@@ -128,20 +121,21 @@ function showMessage(text, type) {
 // ============================================
 const video = document.getElementById('bg-video');
 
-// Ensure video plays on mobile
-video.play().catch(function(error) {
-    console.log('Video autoplay prevented:', error);
-    // Video will still be visible as poster or first frame
-});
+if (video) {
+    // Ensure video plays on mobile
+    video.play().catch(function(error) {
+        console.log('Video autoplay prevented:', error);
+    });
 
-// Pause video when tab is not visible (save resources)
-document.addEventListener('visibilitychange', function() {
-    if (document.hidden) {
-        video.pause();
-    } else {
-        video.play();
-    }
-});
+    // Pause video when tab is not visible (save resources)
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            video.pause();
+        } else {
+            video.play();
+        }
+    });
+}
 
 // ============================================
 // Performance Optimization
