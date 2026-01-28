@@ -1,19 +1,31 @@
 <svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#0a0a0a"/>
-      <stop offset="50%" style="stop-color:#111111"/>
-      <stop offset="100%" style="stop-color:#0a0a0a"/>
+      <stop offset="0%" style="stop-color:#050505"/>
+      <stop offset="50%" style="stop-color:#0a0a0a"/>
+      <stop offset="100%" style="stop-color:#050505"/>
     </linearGradient>
     <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" style="stop-color:#00FF66"/>
       <stop offset="50%" style="stop-color:#3D7A6E"/>
       <stop offset="100%" style="stop-color:#00FF66"/>
     </linearGradient>
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00FF66"/>
+      <stop offset="50%" style="stop-color:#4A9A8A"/>
+      <stop offset="100%" style="stop-color:#00FF66"/>
+    </linearGradient>
     <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feGaussianBlur stdDeviation="20" result="coloredBlur"/>
       <feMerge>
         <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="textGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
@@ -22,48 +34,61 @@
   <!-- Background -->
   <rect width="1200" height="630" fill="url(#bg)"/>
 
+  <!-- Grid pattern overlay -->
+  <defs>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#1a1a1a" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid)" opacity="0.3"/>
+
   <!-- Decorative circles -->
-  <circle cx="100" cy="100" r="200" fill="none" stroke="#3D7A6E" stroke-width="1" opacity="0.2"/>
-  <circle cx="1100" cy="530" r="250" fill="none" stroke="#3D7A6E" stroke-width="1" opacity="0.2"/>
-  <circle cx="600" cy="315" r="400" fill="none" stroke="#00FF66" stroke-width="1" opacity="0.1"/>
+  <circle cx="100" cy="100" r="250" fill="none" stroke="#3D7A6E" stroke-width="1" opacity="0.2"/>
+  <circle cx="1100" cy="530" r="300" fill="none" stroke="#3D7A6E" stroke-width="1" opacity="0.2"/>
 
-  <!-- Top accent line -->
-  <rect x="0" y="0" width="1200" height="4" fill="url(#accent)"/>
+  <!-- Central glow effect -->
+  <ellipse cx="600" cy="280" rx="400" ry="200" fill="#00FF66" opacity="0.03" filter="url(#glow)"/>
 
-  <!-- Logo placeholder area -->
-  <g transform="translate(520, 120)">
-    <!-- B Icon approximation -->
-    <rect x="0" y="0" width="160" height="180" rx="20" fill="#3D7A6E" filter="url(#glow)"/>
-    <rect x="25" y="25" width="50" height="50" rx="8" fill="#0a0a0a"/>
-    <rect x="25" y="95" width="70" height="60" rx="8" fill="#0a0a0a"/>
-    <circle cx="120" cy="125" r="30" fill="#D4A84B"/>
-    <polygon points="120,108 130,118 126,130 114,130 110,118" fill="#3D7A6E"/>
-  </g>
+  <!-- Accent lines -->
+  <rect x="0" y="0" width="1200" height="5" fill="url(#accent)"/>
+  <rect x="0" y="625" width="1200" height="5" fill="url(#accent)"/>
 
-  <!-- Main text -->
-  <text x="600" y="360" font-family="Arial Black, sans-serif" font-size="72" font-weight="900" fill="#ffffff" text-anchor="middle" letter-spacing="2">BALLRS.AI</text>
+  <!-- Main headline -->
+  <text x="600" y="220" font-family="'Arial Black', 'Helvetica Neue', sans-serif" font-size="100" font-weight="900" fill="#ffffff" text-anchor="middle" letter-spacing="6">BALLRS.AI</text>
+
+  <!-- Accent line under title -->
+  <rect x="400" y="250" width="400" height="3" fill="url(#accent)" rx="2"/>
 
   <!-- Tagline -->
-  <text x="600" y="420" font-family="Arial, sans-serif" font-size="28" fill="#00FF66" text-anchor="middle" letter-spacing="4">THE FUTURE OF FOOTBALL</text>
+  <text x="600" y="320" font-family="Arial, sans-serif" font-size="36" fill="#00FF66" text-anchor="middle" letter-spacing="10" font-weight="600">THE FUTURE OF FOOTBALL</text>
 
   <!-- Subtitle -->
-  <text x="600" y="480" font-family="Arial, sans-serif" font-size="20" fill="#999999" text-anchor="middle">AI-Powered Sports Technology Platform</text>
+  <text x="600" y="380" font-family="Arial, sans-serif" font-size="24" fill="#888888" text-anchor="middle" letter-spacing="3">AI-Powered Sports Technology Platform</text>
 
-  <!-- Stats bar -->
-  <g transform="translate(200, 530)">
-    <text x="0" y="0" font-family="Arial Black, sans-serif" font-size="24" fill="#00FF66">5B+</text>
-    <text x="0" y="25" font-family="Arial, sans-serif" font-size="12" fill="#666666">FANS</text>
+  <!-- Stats bar background -->
+  <rect x="100" y="460" width="1000" height="120" rx="15" fill="#111111" stroke="#3D7A6E" stroke-width="1"/>
 
-    <text x="200" y="0" font-family="Arial Black, sans-serif" font-size="24" fill="#00FF66">$600B</text>
-    <text x="200" y="25" font-family="Arial, sans-serif" font-size="12" fill="#666666">MARKET</text>
+  <!-- Stats -->
+  <g font-family="'Arial Black', sans-serif">
+    <!-- Stat 1 -->
+    <text x="225" y="510" font-size="36" fill="#00FF66" text-anchor="middle" font-weight="900">5B+</text>
+    <text x="225" y="545" font-family="Arial, sans-serif" font-size="14" fill="#666666" text-anchor="middle" letter-spacing="2">GLOBAL FANS</text>
 
-    <text x="420" y="0" font-family="Arial Black, sans-serif" font-size="24" fill="#00FF66">300K+</text>
-    <text x="420" y="25" font-family="Arial, sans-serif" font-size="12" fill="#666666">CLUBS</text>
+    <!-- Stat 2 -->
+    <text x="475" y="510" font-size="36" fill="#00FF66" text-anchor="middle" font-weight="900">$600B</text>
+    <text x="475" y="545" font-family="Arial, sans-serif" font-size="14" fill="#666666" text-anchor="middle" letter-spacing="2">MARKET SIZE</text>
 
-    <text x="620" y="0" font-family="Arial Black, sans-serif" font-size="24" fill="#00FF66">265M</text>
-    <text x="620" y="25" font-family="Arial, sans-serif" font-size="12" fill="#666666">PLAYERS</text>
+    <!-- Stat 3 -->
+    <text x="725" y="510" font-size="36" fill="#00FF66" text-anchor="middle" font-weight="900">300K+</text>
+    <text x="725" y="545" font-family="Arial, sans-serif" font-size="14" fill="#666666" text-anchor="middle" letter-spacing="2">PRO CLUBS</text>
+
+    <!-- Stat 4 -->
+    <text x="975" y="510" font-size="36" fill="#00FF66" text-anchor="middle" font-weight="900">265M</text>
+    <text x="975" y="545" font-family="Arial, sans-serif" font-size="14" fill="#666666" text-anchor="middle" letter-spacing="2">ACTIVE PLAYERS</text>
   </g>
 
-  <!-- Bottom accent line -->
-  <rect x="0" y="626" width="1200" height="4" fill="url(#accent)"/>
+  <!-- Dividers between stats -->
+  <line x1="350" y1="485" x2="350" y2="555" stroke="#3D7A6E" stroke-width="1" opacity="0.5"/>
+  <line x1="600" y1="485" x2="600" y2="555" stroke="#3D7A6E" stroke-width="1" opacity="0.5"/>
+  <line x1="850" y1="485" x2="850" y2="555" stroke="#3D7A6E" stroke-width="1" opacity="0.5"/>
 </svg>

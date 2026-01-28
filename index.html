@@ -127,14 +127,22 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            padding: 1rem 2rem;
+            padding: 0.875rem 3rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             background: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
             animation: slide-up 0.8s ease-out;
+            max-width: 100%;
+        }
+
+        @media (min-width: 1441px) {
+            nav {
+                padding: 0.875rem calc((100vw - 1400px) / 2 + 3rem);
+            }
         }
 
         .nav-logo img {
@@ -242,8 +250,12 @@
             position: relative;
             z-index: 10;
             text-align: center;
-            max-width: 1000px;
+            max-width: 1100px;
             padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
         }
 
         .hero-badge {
@@ -364,16 +376,21 @@
         .hero-stats {
             display: flex;
             justify-content: center;
-            gap: 3rem;
+            align-items: flex-start;
+            gap: 2rem;
             margin-top: 4rem;
             flex-wrap: wrap;
             animation: slide-up 0.8s ease-out 1s both;
+            width: 100%;
+            max-width: 900px;
         }
 
         .stat {
             text-align: center;
-            padding: 1rem;
+            padding: 1rem 1.5rem;
             transition: transform 0.3s;
+            flex: 0 0 auto;
+            min-width: 140px;
         }
 
         .stat:hover { transform: scale(1.1); }
@@ -400,12 +417,22 @@
         section {
             padding: 7rem 2rem;
             position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        @media (min-width: 1441px) {
+            section {
+                padding: 7rem calc((100vw - 1400px) / 2 + 2rem);
+            }
         }
 
         .section-header {
             text-align: center;
-            max-width: 700px;
-            margin: 0 auto 5rem;
+            max-width: 750px;
+            margin: 0 auto 4rem;
+            padding: 0 1rem;
         }
 
         .section-label {
@@ -453,11 +480,17 @@
         }
 
         .vision-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 2rem;
             max-width: 1200px;
             margin: 0 auto;
+        }
+
+        .vision-grid .vision-card {
+            flex: 1 1 280px;
+            max-width: 320px;
         }
 
         .vision-card {
@@ -598,11 +631,18 @@
         }
 
         .ecosystem-nodes {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 1.5rem;
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
+        }
+
+        .ecosystem-nodes .eco-node {
+            flex: 1 1 200px;
+            max-width: 240px;
+            min-width: 180px;
         }
 
         .eco-node {
@@ -658,11 +698,18 @@
         }
 
         .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 2rem;
             max-width: 1200px;
             margin: 0 auto;
+        }
+
+        .products-grid .product-card {
+            flex: 1 1 320px;
+            max-width: 380px;
+            min-width: 300px;
         }
 
         .product-card {
@@ -764,11 +811,18 @@
         }
 
         .market-numbers {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 2rem;
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
+        }
+
+        .market-numbers .market-stat {
+            flex: 1 1 220px;
+            max-width: 260px;
+            min-width: 200px;
         }
 
         .market-stat {
@@ -875,11 +929,18 @@
         }
 
         .revenue-streams {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 1.5rem;
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
+        }
+
+        .revenue-streams .revenue-card {
+            flex: 1 1 260px;
+            max-width: 280px;
+            min-width: 240px;
         }
 
         .revenue-card {
@@ -959,18 +1020,22 @@
         .contact-form {
             display: flex;
             flex-direction: column;
+            align-items: stretch;
             gap: 1rem;
-            max-width: 450px;
+            width: 100%;
+            max-width: 500px;
             margin: 0 auto;
         }
 
         .form-row {
             display: flex;
             gap: 1rem;
+            width: 100%;
         }
 
         .form-group {
             flex: 1;
+            min-width: 0;
         }
 
         .contact-form input,
@@ -1110,24 +1175,104 @@
         .stagger-children > *:nth-child(6) { transition-delay: 0.6s; }
 
         /* ============================================
-           Responsive
+           Responsive - Laptop (1024px - 1440px)
            ============================================ */
-        @media (max-width: 768px) {
+        @media (min-width: 1024px) and (max-width: 1440px) {
+            section { padding: 6rem 3rem; }
+
+            .vision-grid .vision-card {
+                flex: 1 1 calc(50% - 1rem);
+                max-width: calc(50% - 1rem);
+            }
+
+            .ecosystem-nodes .eco-node {
+                flex: 1 1 calc(25% - 1.125rem);
+            }
+
+            .products-grid .product-card {
+                flex: 1 1 calc(33.333% - 1.333rem);
+                max-width: calc(33.333% - 1.333rem);
+            }
+
+            .market-numbers .market-stat {
+                flex: 1 1 calc(25% - 1.5rem);
+            }
+
+            .revenue-streams .revenue-card {
+                flex: 1 1 calc(25% - 1.125rem);
+                max-width: calc(25% - 1.125rem);
+            }
+        }
+
+        /* ============================================
+           Responsive - Tablet (768px - 1023px)
+           ============================================ */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            nav { padding: 1rem 2rem; }
+            section { padding: 5rem 2rem; }
+
+            .vision-grid .vision-card {
+                flex: 1 1 calc(50% - 1rem);
+                max-width: calc(50% - 1rem);
+            }
+
+            .ecosystem-nodes .eco-node {
+                flex: 1 1 calc(50% - 0.75rem);
+                max-width: calc(50% - 0.75rem);
+            }
+
+            .products-grid .product-card {
+                flex: 1 1 calc(50% - 1rem);
+                max-width: calc(50% - 1rem);
+            }
+
+            .market-numbers .market-stat {
+                flex: 1 1 calc(50% - 1rem);
+            }
+
+            .revenue-streams .revenue-card {
+                flex: 1 1 calc(50% - 0.75rem);
+                max-width: calc(50% - 0.75rem);
+            }
+
+            .business-flow { gap: 1rem; }
+            .flow-item { padding: 1.2rem 2rem; min-width: 120px; }
+        }
+
+        /* ============================================
+           Responsive - Mobile (max 767px)
+           ============================================ */
+        @media (max-width: 767px) {
             nav { padding: 1rem; }
             .nav-links { display: none; }
 
-            section { padding: 5rem 1.5rem; }
+            section { padding: 4rem 1.5rem; }
 
             .hero-stats { gap: 1.5rem; }
 
-            .ecosystem-nodes { grid-template-columns: repeat(2, 1fr); }
+            .vision-grid .vision-card,
+            .products-grid .product-card,
+            .market-numbers .market-stat,
+            .revenue-streams .revenue-card {
+                flex: 1 1 100%;
+                max-width: 400px;
+            }
 
-            .business-flow { flex-direction: column; }
+            .ecosystem-nodes .eco-node {
+                flex: 1 1 calc(50% - 0.75rem);
+                max-width: calc(50% - 0.75rem);
+            }
+
+            .business-flow { flex-direction: column; gap: 0.75rem; }
             .flow-arrow { transform: rotate(90deg); }
+            .flow-item { width: 100%; max-width: 200px; }
 
             .form-row { flex-direction: column; }
         }
 
+        /* ============================================
+           Responsive - Small Mobile (max 480px)
+           ============================================ */
         @media (max-width: 480px) {
             .hero h1 { font-size: 2rem; }
 
@@ -1141,7 +1286,17 @@
                 text-align: center;
             }
 
-            .ecosystem-nodes { grid-template-columns: 1fr; }
+            .ecosystem-nodes .eco-node {
+                flex: 1 1 100%;
+                max-width: 100%;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .stat { padding: 0.5rem; }
         }
 
         /* ============================================
