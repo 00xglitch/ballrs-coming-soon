@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 200" width="360" height="400">
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- B Icon - Bracket style like the original -->
+  <g transform="translate(35, 5)">
+    <!-- Main B shape - thick bracket style -->
+    <path d="M 15 0
+             L 85 0
+             C 105 0 110 15 110 30
+             L 110 45
+             C 110 55 105 62 95 65
+             C 105 68 110 75 110 85
+             L 110 100
+             C 110 115 105 130 85 130
+             L 15 130
+             C 5 130 0 125 0 115
+             L 0 15
+             C 0 5 5 0 15 0
+             Z
+
+             M 25 20
+             L 25 52
+             L 65 52
+             C 78 52 85 45 85 37
+             C 85 28 78 20 65 20
+             Z
+
+             M 25 72
+             L 25 110
+             L 68 110
+             C 82 110 90 102 90 91
+             C 90 80 82 72 68 72
+             Z"
+          fill="#3D7A6E"
+          filter="url(#glow)"/>
+
+    <!-- Soccer ball - positioned in bottom right opening of B -->
+    <g transform="translate(72, 88)">
+      <!-- Ball base -->
+      <circle cx="0" cy="0" r="18" fill="#D4A84B" stroke="#3D7A6E" stroke-width="1.5"/>
+      <!-- Pentagon center -->
+      <polygon points="0,-7 6.5,-2 4,5.5 -4,5.5 -6.5,-2" fill="#3D7A6E"/>
+      <!-- Lines from pentagon to edge -->
+      <line x1="0" y1="-7" x2="0" y2="-15" stroke="#3D7A6E" stroke-width="1.2"/>
+      <line x1="6.5" y1="-2" x2="12" y2="-7" stroke="#3D7A6E" stroke-width="1.2"/>
+      <line x1="4" y1="5.5" x2="8" y2="12" stroke="#3D7A6E" stroke-width="1.2"/>
+      <line x1="-4" y1="5.5" x2="-8" y2="12" stroke="#3D7A6E" stroke-width="1.2"/>
+      <line x1="-6.5" y1="-2" x2="-12" y2="-7" stroke="#3D7A6E" stroke-width="1.2"/>
+    </g>
+  </g>
+
+  <!-- ballrs.ai text -->
+  <text x="90" y="165"
+        font-family="'SF Pro Display', 'Segoe UI', -apple-system, sans-serif"
+        font-size="32"
+        font-weight="600"
+        fill="#3D7A6E"
+        text-anchor="middle"
+        letter-spacing="0.5">ballrs.ai</text>
+</svg>
